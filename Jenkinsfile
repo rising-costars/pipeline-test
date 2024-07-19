@@ -31,25 +31,21 @@ pipeline {
         success {
             script {
                 echo 'Build success'
-                manager.addShortText('BUILD: SUCCESS', 'black', 'lightgreen', '0.5px', 'black')
             }
         }
         unstable {
             script {
                 echo 'Build unstable'
-                manager.addShortText('BUILD: UNSTABLE', 'black', 'orange', '0.5px', 'black')
             }
         }
         aborted {
             script {
                 echo 'Build aborted'
-                manager.addShortText('BUILD: ABORTED', 'black', 'grey', '0.5px', 'black')
             }
         }
         failure {
             script {
                 echo 'Build failed'
-                manager.addShortText('BUILD: FAILED', 'black', 'red', '0.5px', 'black')
             }
         }
         always {
