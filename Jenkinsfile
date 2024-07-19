@@ -1,7 +1,7 @@
 pipeline {
     agent any
     options {
-        timestamps(); parallelsAlwaysFailFast(); ansiColor('xterm'); timeout(time: 6, unit: 'HOURS')
+        timestamps(); parallelsAlwaysFailFast(); timeout(time: 6, unit: 'HOURS')
     }
     environment {
         REPOS_TO_BE_BUILT = "${reposToBeBuilt}"
