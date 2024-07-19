@@ -34,5 +34,5 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-          curl --location 'https://demo-jenkins.clarityrox.com/job/Pipeline-Model-1/job/Rising-Costars-CI-Job/build?token=pipeline-model-1-trigger-secret' \
+          curl -k --location 'https://demo-jenkins.clarityrox.com/job/Pipeline-Model-1/job/Rising-Costars-CI-Job/build?token=pipeline-model-1-trigger-secret' \
           --header 'Authorization: Basic YWRtaW46Q0FwNHdkIUA='
