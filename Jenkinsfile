@@ -1,51 +1,65 @@
-freeStyleJob('sb704005/vsi-build-post') {
-    description 'Send metrics to connectall'
-    logRotator(-1, 100)
-    label 'k8s-utility-node'
-    concurrentBuild(true)
-
-    wrappers {
-        timestamps()
-        colorizeOutput 'xterm'
+pipeline {
+    
+    options {
+        timestamps(); parallelsAlwaysFailFast(); ansiColor('xterm'); timeout(time: 6, unit: 'HOURS')
     }
-
+    environment {
+        REPOS_TO_BE_BUILT = "${reposToBeBuilt}"
+    }
     parameters {
-      stringParam('CONNECTALL_API_URL',  'https://connectall183.clarityrox.com/ua', 'e.g. http://localhost:8090')
-      stringParam('CONNECTALL_API_KEY', 'aaaa-bbbb-cccc-dddd-eeeeeeeeeee', 'Api Key for connectall account')
-
-      // According to https://github.com/jenkinsci/jenkins/blob/master/core/src/main/java/hudson/model/Result.java
-      stringParam('BUILD_RESULT', '', 'The result of the build. (e.g. SUCCESS, UNSTABLE, FAILURE, NOT_BUILT, ABORTED, etc.)')
-      stringParam('MAIN_COMMIT_SHA', '', 'The main commit of the deployed change.')
-      stringParam('TIME_CREATED_MS', '', """The time the deployed change first began.
-      In this case, the earlist timestamp in the set of commits. Usually the calling job's (currentBuild.timeInMillis / 1000).
-      """)
-      stringParam('TIME_DEPLOYED_MS', '', 'The time the deploy job finished. Usually the calling job\'s (currentBuild.timeInMillis + currentBuild.duration) / 1000.')
+        booleanParam(name: 'BLACKDUCK_SCAN', defaultValue: false, description: 'Enable blackduck scan')
+        string(name:'BLD_AGENT_LABEL', defaultValue: 'test-agent', description: 'Label of the build agent')
     }
 
-    steps {
-      shell '''\
-      #!/bin/bash
-      echo $(date -u -d @$TIME_CREATED_MS "+%Y-%m-%dT%H:%M:%S")
-      echo $(date -u -d @$TIME_DEPLOYED_MS "+%Y-%m-%dT%H:%M:%S")
+    stages {
+        stage('Prepare') {
+            steps {
+              script {
+                    String javaHome = "${env.javaHome}"
+                    sh '''
+                    ls -lrt
+                    git status
+                    echo 'Git commit : ${gitVars.GIT_COMMIT}'
+                    env
+                    '''
+              }
+            }
+        }
+    }
 
-      json=$(cat <<EOF
-      {\"appLinkName\":\"some-unique-connectall-applink-name-such-as-TellerDeploys2\",
-          \"fields\": {
-            \"Id\": \"$BUILD_NUMBER\",
-            \"IsSuccessful\":$([[ "$BUILD_RESULT" == "SUCCESS" ]]  IS_SUCCESSFUL=true || && IS_SUCCESSFUL=false; echo $IS_SUCCESSFUL),
-            \"TimeCreated\":\"$(date -u -d @$TIME_CREATED_MS "+%Y-%m-%dT%H:%M:%S")\",
-            \"TimeDeployed\":\"$(date -u -d @$TIME_DEPLOYED_MS "+%Y-%m-%dT%H:%M:%S")\",
-            \"MainRevision\":\"$MAIN_COMMIT_SHA\"
-          }
-      }
-      EOF
-      )
-
-      echo "Send JSON: $json"
-      echo "via ${CONNECTALL_API_URL}/connectall/api/2/postRecord?apikey=$CONNECTALL_API_KEY"
-
-      curl --header "Content-Type: application/json;charset=UTF-8" -X POST -d "$json" "${CONNECTALL_API_URL}/connectall/api/2/postRecord?apikey=$CONNECTALL_API_KEY"
-      '''.stripIndent()
+    post {
+        success {
+            script {
+                echo 'Build success'
+                manager.addShortText('BUILD: SUCCESS', 'black', 'lightgreen', '0.5px', 'black')
+            }
+        }
+        unstable {
+            script {
+                echo 'Build unstable'
+                manager.addShortText('BUILD: UNSTABLE', 'black', 'orange', '0.5px', 'black')
+            }
+        }
+        aborted {
+            script {
+                echo 'Build aborted'
+                manager.addShortText('BUILD: ABORTED', 'black', 'grey', '0.5px', 'black')
+            }
+        }
+        failure {
+            script {
+                echo 'Build failed'
+                manager.addShortText('BUILD: FAILED', 'black', 'red', '0.5px', 'black')
+            }
+        }
+        always {
+            script {
+                echo 'Clean up of node modules'
+                sh '''
+                    ls -lrt
+                    git status
+                '''
+            }
+        }
     }
 }
- 
