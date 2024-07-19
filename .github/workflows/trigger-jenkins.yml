@@ -33,5 +33,5 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo 'Trigger the Jenkins build'
-          curl -v -k --location 'https://demo-jenkins.clarityrox.com/job/Pipeline-Model-1/job/Rising-Costars-CI-Job/build?token=pipeline-model-1-trigger-secret' \
+          curl -v -k --location 'https://demo-jenkins.clarityrox.com/job/Pipeline-Model-1/job/Rising-Costars-CI-Job/buildWithParameters?token=pipeline-model-1-trigger-secret' \
           --header 'Authorization: Basic YWRtaW46Q0FwNHdkIUA='

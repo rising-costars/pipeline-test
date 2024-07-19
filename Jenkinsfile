@@ -7,8 +7,8 @@ pipeline {
         REPOS_TO_BE_BUILT = "${reposToBeBuilt}"
     }
     parameters {
-        // booleanParam(name: 'BLACKDUCK_SCAN', defaultValue: false, description: 'Enable blackduck scan')
-        // string(name:'BLD_AGENT_LABEL', defaultValue: 'test-agent', description: 'Label of the build agent')
+         booleanParam(name: 'BLACKDUCK_SCAN', defaultValue: false, description: 'Enable blackduck scan')
+         string(name:'BLD_AGENT_LABEL', defaultValue: 'test-agent', description: 'Label of the build agent')
     }
 
     stages {
