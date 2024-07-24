@@ -31,7 +31,7 @@ pipeline {
             steps {
               script {
                     test(
-                        AutomationName: "VSIChanges", 
+                        AutomationName: "VSICommits", 
                         DeployId: "${env.BUILD_ID}", 
                         GitRepoLoc: "./", 
                         PrevSuccessBuildCommit: "HEAD^1", 
@@ -49,7 +49,7 @@ pipeline {
                     sh 'rm -rf connectall-jenkins-shared-library'
                     sh 'git clone https://github.com/rising-costars/connectall-jenkins-shared-library.git'
                     test(
-                        AutomationName: "VSIChanges", 
+                        AutomationName: "VSICommits", 
                         DeployId: "${env.BUILD_ID}", 
                         GitRepoLoc: "./connectall-jenkins-shared-library", 
                         PrevSuccessBuildCommit: "HEAD^1", 
