@@ -33,7 +33,7 @@ pipeline {
                     postDeploys(
                         AutomationName: "VSIDeploys", 
                         DeployId: "${env.BUILD_ID}", 
-                        BuildStartTime: "${currentBuild.timeInMillis}",
+                        BuildStartTime: "${Integer.valueOf(currentBuild.timeInMillis/1000)}",
                         BuildComponent: "connectall", 
                         ConnectALL_Api_Key: "${CONNECTALL_API_KEY}",
                         ConnectALL_Api_Url: "${CONNECTALL_API_URL}"
