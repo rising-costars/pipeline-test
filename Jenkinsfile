@@ -20,8 +20,6 @@ pipeline {
                     sh '''
                     ls -lrt
                     git status
-                    echo 'Git commit : ${gitVars.GIT_COMMIT}'
-                    
                     '''
               }
             }
