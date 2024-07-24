@@ -46,6 +46,7 @@ pipeline {
         stage('Build Second Repo') {
             steps {
               script {
+                    sh 'rm -rf connectall-jenkins-shared-library'
                     sh 'git clone https://github.com/rising-costars/connectall-jenkins-shared-library.git'
                     postCommits(
                         AutomationName: "VSIChanges", 
