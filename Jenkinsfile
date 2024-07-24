@@ -31,6 +31,7 @@ pipeline {
                     test(name: "Akshitha", day: "Taco Tuesday")
                     test(name: "Sudha", day: "Moody Monday")
                     helloWorld(name: "Akshitha", day: "Taco Tuesday")
+                    postCommits()
               }
             }
         }
