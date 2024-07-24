@@ -20,6 +20,7 @@ pipeline {
                     sh '''
                     ls -lrt
                     git status
+                    echo "test again"
                     '''
               }
             }
@@ -27,6 +28,7 @@ pipeline {
         stage('Build') {
             steps {
               script {
+                    test(name: "Akshitha", day: "Taco Tuesday")
                     helloWorld(name: "Akshitha", day: "Taco Tuesday")
               }
             }
