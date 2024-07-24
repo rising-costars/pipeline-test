@@ -47,7 +47,16 @@ pipeline {
             steps {
               script {
                     sh 'git clone https://github.com/rising-costars/connectall-jenkins-shared-library.git'
-                    postCommits(CONNECTALL_API_URL: "${CONNECTALL_API_KEY}", CONNECTALL_API_KEY: "${CONNECTALL_API_KEY}", AutomationName: "VSIChanges", DeployId: "${env.BUILD_ID}", GitRepoLoc: "./connectall-jenkins-shared-library", PrevSuccessBuildCommit: "HEAD~1", CurrentBuildCommit: "HEAD" )
+                    postCommits(
+                        AutomationName: "VSIChanges", 
+                        DeployId: "${env.BUILD_ID}", 
+                        GitRepoLoc: "./connectall-jenkins-shared-library", 
+                        PrevSuccessBuildCommit: "HEAD^1", 
+                        CurrentBuildCommit: "HEAD",
+                        ConnectALL_Api_Key: "${CONNECTALL_API_KEY}",
+                        ConnectALL_Api_Url: "${CONNECTALL_API_URL}"
+                        
+                    )
               }
             }
         }
