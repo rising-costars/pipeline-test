@@ -26,6 +26,13 @@ pipeline {
               }
             }
         }
+        stage('Build') {
+            steps {
+              script {
+                    test(name: "Akshitha", day: "Taco Tuesday")
+              }
+            }
+        }
     }
 
     post {
