@@ -28,7 +28,6 @@ pipeline {
         stage('Build') {
             steps {
               script {
-                    test(name: "Sudha", day: "Moody Monday")
                     helloWorld(name: "Akshitha", day: "Taco Tuesday")
                     postCommits()
               }
