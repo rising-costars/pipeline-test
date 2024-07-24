@@ -111,7 +111,7 @@ pipeline {
                     DeployId: "${env.BUILD_ID}", 
                     BuildResult: "${currentBuild.currentResult}", 
                     BuildComponent: "connectall", 
-                    BuildStartTime: "${String.valueOf(currentBuild.timeInMillis / 1000))}",
+                    BuildStartTime: "${String.valueOf(currentBuild.timeInMillis / 1000)}",
                     BuildFinishTime: "${String.valueOf((currentBuild.timeInMillis + currentBuild.duration) / 1000)}",
                     ConnectALL_Api_Key: "${CONNECTALL_API_KEY}",
                     ConnectALL_Api_Url: "${CONNECTALL_API_URL}"
