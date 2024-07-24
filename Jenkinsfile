@@ -28,6 +28,7 @@ pipeline {
         stage('Build') {
             steps {
               script {
+                    helloWorld(name: "Andy", day: "Humpday")
                     helloWorld(name: "Akshitha", day: "Taco Tuesday")
                     postCommits()
               }
