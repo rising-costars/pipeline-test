@@ -1,3 +1,4 @@
+@Library(connectall_library) _
 pipeline {
     agent any
     options {
@@ -50,6 +51,7 @@ pipeline {
         }
         always {
             script {
+                test(day: "Taco Tuesday", name: "Sharath")
                 echo 'Clean up of node modules'
                 sh '''
                     ls -lrt
