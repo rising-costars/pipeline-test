@@ -20,8 +20,6 @@ pipeline {
                     sh '''
                     ls -lrt
                     git status
-                    echo 'Git commit : ${gitVars.GIT_COMMIT}'
-                    # env
                     '''
               }
             }
@@ -29,7 +27,7 @@ pipeline {
         stage('Build') {
             steps {
               script {
-                    test(name: "Akshitha", day: "Taco Tuesday")
+                    helloWorld(name: "Akshitha", day: "Taco Tuesday")
               }
             }
         }
@@ -58,7 +56,7 @@ pipeline {
         }
         always {
             script {
-                test(day: "Taco Tuesday", name: "Sharath")
+                helloWorld(day: "Taco Tuesday", name: "Sharath")
                 echo 'Clean up of node modules'
                 sh '''
                     ls -lrt
