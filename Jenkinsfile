@@ -28,6 +28,7 @@ pipeline {
         stage('Build') {
             steps {
               script {
+                    helloWorld(name: "Andy", day: "Taco Tuesday")
                     helloWorld(name: "Akshitha", day: "Taco Tuesday")
                     postCommits(CONNECTALL_API_URL: "https://connectall183.clarityrox.com/ua", CONNECTALL_API_KEY: "asdfasdfas", automationName: "VSIChanges", deployId: "asdf" )
               }
