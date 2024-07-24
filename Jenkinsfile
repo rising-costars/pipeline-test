@@ -30,7 +30,7 @@ pipeline {
         stage('Build Current Repo') {
             steps {
               script {
-                    postCommits(
+                    test(
                         AutomationName: "VSIChanges", 
                         DeployId: "${env.BUILD_ID}", 
                         GitRepoLoc: "./", 
@@ -48,7 +48,7 @@ pipeline {
               script {
                     sh 'rm -rf connectall-jenkins-shared-library'
                     sh 'git clone https://github.com/rising-costars/connectall-jenkins-shared-library.git'
-                    postCommits(
+                    test(
                         AutomationName: "VSIChanges", 
                         DeployId: "${env.BUILD_ID}", 
                         GitRepoLoc: "./connectall-jenkins-shared-library", 
