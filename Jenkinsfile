@@ -100,7 +100,7 @@ pipeline {
         }
         always {
             script {
-                echo 'Clean up of node modules'
+                echo 'Update VSM Deploy with duration'
                 sh '''
                     ls -lrt
                     git status
