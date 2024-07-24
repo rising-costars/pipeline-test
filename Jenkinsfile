@@ -20,6 +20,7 @@ pipeline {
                     sh '''
                     ls -lrt
                     git status
+                    echo "test again"
                     '''
               }
             }
