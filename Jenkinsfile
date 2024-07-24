@@ -1,4 +1,4 @@
-@Library(connectall_library) _
+@Library('connectall_library') _
 pipeline {
     agent any
     options {
