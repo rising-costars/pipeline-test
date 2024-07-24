@@ -28,7 +28,6 @@ pipeline {
         stage('Build') {
             steps {
               script {
-                    helloWorld(name: "Akshitha", day: "Taco Tuesday")
                     postCommits(CONNECTALL_API_URL: "https://connectall183.clarityrox.com/ua", CONNECTALL_API_KEY: "asdfasdfas", automationName: "VSIChanges", deployId: "asdf" )
               }
             }
@@ -58,7 +57,6 @@ pipeline {
         }
         always {
             script {
-                helloWorld(day: "Taco Tuesday", name: "Sharath")
                 echo 'Clean up of node modules'
                 sh '''
                     ls -lrt
