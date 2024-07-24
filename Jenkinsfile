@@ -1,4 +1,4 @@
-@Library(connectall_library) _
+@Library('connectall_library') _
 pipeline {
     agent any
     options {
@@ -21,7 +21,7 @@ pipeline {
                     ls -lrt
                     git status
                     echo 'Git commit : ${gitVars.GIT_COMMIT}'
-                    env
+                    # env
                     '''
               }
             }
