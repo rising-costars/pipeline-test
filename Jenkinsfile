@@ -24,13 +24,13 @@ pipeline {
                     git status
                     echo "test again"
                     '''
+                    sh "env"
               }
             }
         }
         stage('Create Deploy') {
             steps {
               script {
-                    sh "env"
                     sh "date --date='@1721865551' +%Y-%m-%dT%H:%M:%S%z"
                     postDeploys(
                         AutomationName: "VSIDeploys", 
