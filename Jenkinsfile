@@ -106,9 +106,20 @@ pipeline {
                 sh '''
                     ls -lrt
                     git status
+                    env
                 '''
                 
-                
+                postDeploys(
+                    AutomationName: "VSIDeploys", 
+                    DeployId: "${env.BUILD_ID}", 
+                    BuildResult: "${currentBuild.currentResult}", 
+                    BuildComponent: "connectall", 
+                    BuildStartTime: "${currentBuild.timeInMillis}",
+                    BuildFinishTime: "${String.valueOf(currentBuild.timeInMillis + currentBuild.duration)}",
+                    ConnectALL_Api_Key: "${CONNECTALL_API_KEY}",
+                    ConnectALL_Api_Url: "${CONNECTALL_API_URL}"
+                    
+                )
             
             }
         }
