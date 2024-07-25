@@ -15,5 +15,6 @@ commit 1&@
 5. Create an automation to VSICommits
 6. Create an automation to VSIDeploys
 7. Make changes to your pipeline
+8. Test User Field
 
 
