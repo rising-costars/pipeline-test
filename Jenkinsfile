@@ -52,8 +52,8 @@ pipeline {
                         AutomationName: "VSICommits", 
                         DeployId: "${env.BUILD_ID}", 
                         GitRepoLoc: "./", 
-                        PrevSuccessBuildCommit: "529081295d8561e3497e5976424ae3d49fc6dbfa", 
-                        CurrentBuildCommit: "HEAD",
+                        PrevSuccessBuildCommit: "${env.GIT_PREVIOUS_SUCCESSFUL_COMMIT}", 
+                        CurrentBuildCommit: "${env.GIT_COMMIT}",
                         ConnectALL_Api_Key: "${CONNECTALL_API_KEY}",
                         ConnectALL_Api_Url: "${CONNECTALL_API_URL}"
                         
