@@ -41,6 +41,8 @@ pipeline {
                         ConnectALL_Api_Url: "${CONNECTALL_API_URL}"
                     )
               }
+              // Wait for 10 seconds ensure the Deploy is created
+              sleep time: 10, unit: 'SECONDS'
             }
         }
         stage('Build Current Repo') {
@@ -50,7 +52,7 @@ pipeline {
                         AutomationName: "VSICommits", 
                         DeployId: "${env.BUILD_ID}", 
                         GitRepoLoc: "./", 
-                        PrevSuccessBuildCommit: "HEAD^1", 
+                        PrevSuccessBuildCommit: "529081295d8561e3497e5976424ae3d49fc6dbfa", 
                         CurrentBuildCommit: "HEAD",
                         ConnectALL_Api_Key: "${CONNECTALL_API_KEY}",
                         ConnectALL_Api_Url: "${CONNECTALL_API_URL}"
