@@ -30,6 +30,8 @@ pipeline {
         stage('Create Deploy') {
             steps {
               script {
+                    sh "env"
+                    sh "date -d 1721865551 +%Y-%m-%dT%H:%M:%S%z"
                     postDeploys(
                         AutomationName: "VSIDeploys", 
                         DeployId: "${env.BUILD_ID}", 
