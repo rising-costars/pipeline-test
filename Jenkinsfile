@@ -41,6 +41,8 @@ pipeline {
                         ConnectALL_Api_Url: "${CONNECTALL_API_URL}"
                     )
               }
+              // Wait for 10 seconds ensure the Deploy is created
+              sleep time: 10, unit: 'SECONDS'
             }
         }
         stage('Build Current Repo') {
