@@ -31,6 +31,7 @@ pipeline {
             steps {
               script {
                     sh "env"
+                    sh "man date"
                     sh "date -r 1721865551 +%Y-%m-%dT%H:%M:%S%z"
                     postDeploys(
                         AutomationName: "VSIDeploys", 
