@@ -8,6 +8,7 @@ pipeline {
         REPOS_TO_BE_BUILT = "${reposToBeBuilt}"
         CONNECTALL_API_KEY = credentials('connectall-api-key')
         CONNECTALL_API_URL = credentials('connectall-api-url')
+        DEBUG_VALUEOPS_INSIGHTS_LIBRARY = 'true'
     }
     parameters {
          booleanParam(name: 'BLACKDUCK_SCAN', defaultValue: false, description: 'Enable blackduck scan')
