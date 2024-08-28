@@ -39,7 +39,8 @@ pipeline {
                         BuildStartTime: "${currentBuild.timeInMillis}",
                         BuildComponent: "connectall", 
                         ConnectALL_Api_Key: "${CONNECTALL_API_KEY}",
-                        ConnectALL_Api_Url: "${CONNECTALL_API_URL}"
+                        ConnectALL_Api_Url: "${CONNECTALL_API_URL}",
+                        Create: 'true'
                     )
               }
               // Wait for 10 seconds ensure the Deploy is created
@@ -57,7 +58,6 @@ pipeline {
                         CurrentBuildCommit: "${env.GIT_COMMIT}",
                         ConnectALL_Api_Key: "${CONNECTALL_API_KEY}",
                         ConnectALL_Api_Url: "${CONNECTALL_API_URL}"
-                        
                     )
               }
             }
