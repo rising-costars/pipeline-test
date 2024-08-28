@@ -115,6 +115,7 @@ pipeline {
                 postDeploys(
                     AutomationName: "VSIDeploys", 
                     DeployId: "${env.BUILD_ID}", 
+                    BuildComponent: "connectall",
                     BuildResult: "${currentBuild.currentResult}", 
                     BuildFinishTime: "${String.valueOf(currentBuild.timeInMillis + currentBuild.duration)}",
                     ConnectALL_Api_Key: "${CONNECTALL_API_KEY}",
