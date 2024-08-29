@@ -120,7 +120,7 @@ pipeline {
                     BuildStartTime: "${currentBuild.timeInMillis}",
                     BuildFinishTime: "${String.valueOf(currentBuild.timeInMillis + currentBuild.duration)}",
                     ConnectALL_Api_Key: "${CONNECTALL_API_KEY}",
-                    ConnectALL_Api_Url: "${CONNECTALL_API_URL}"
+                    ConnectALL_Api_Url: "${CONNECTALL_API_URL}",
                     Create: 'false'
                 )
             
