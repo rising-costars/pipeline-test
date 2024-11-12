@@ -69,9 +69,9 @@ pipeline {
                     postDeployAndCommitsToInsights(
 				        Runtime: "Windows",
                         BuildId: "${env.BUILD_ID}",
-                       // CurrentBuildCommit: "${env.GIT_COMMIT}",
-                       // PreviousSuccessBuildCommit: "${env.GIT_PREVIOUS_SUCCESSFUL_COMMIT}",                      
-                        CurrentBuildCommit: "HEAD",
+                       CurrentBuildCommit: "${env.GIT_COMMIT}",
+                       PreviousSuccessBuildCommit: "${env.GIT_PREVIOUS_SUCCESSFUL_COMMIT}",                      
+                       // CurrentBuildCommit: "HEAD",
                         PreviousSuccessBuildCommit: "HEAD~2",                      
                         ComponentName: "${env.INSIGHTS_COMPONENT_NAME}", 
                         BuildStartTime: "${currentBuild.timeInMillis}", 
