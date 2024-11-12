@@ -6,7 +6,7 @@ pipeline {
         INSIGHTS_API_URL = credentials('INSIGHTS_API_URL')    
         INSIGHTS_WORKSPACE_OBJECT_ID = "699998056987"
         INSIGHTS_COMPONENT_NAME = "connectall"
-        BUILD_PATH = ${currentBuild.BUILD_NUMBER}
+        BUILD_PATH ="${currentBuild.BUILD_NUMBER}"
     }
 
     
