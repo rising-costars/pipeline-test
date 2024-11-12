@@ -4,7 +4,7 @@ pipeline {
 
     environment {
         INSIGHTS_API_KEY = credentials('INSIGHTS_API_KEY')
-        INSIGHTS_API_URL = "https://rally1.rallydev.com/"
+        INSIGHTS_API_URL = "https://rally1.rallydev.com"
         INSIGHTS_WORKSPACE_OBJECT_ID = "699998056987"
         INSIGHTS_COMPONENT_NAME = "connectall"
         DEBUG_VALUEOPS_INSIGHTS_LIBRARY=true
