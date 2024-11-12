@@ -6,7 +6,6 @@ pipeline {
         INSIGHTS_API_URL = credentials('INSIGHTS_API_URL')    
         INSIGHTS_WORKSPACE_OBJECT_ID = "699998056987"
         INSIGHTS_COMPONENT_NAME = "connectall"
-        BUILD_PATH ="${currentBuild.BUILD_NUMBER}"
     }
 
     
@@ -66,7 +65,7 @@ pipeline {
                     
                     postDeployAndCommitsToInsights(
 				        Runtime: "Windows",
-                        BuildId: "${BUILD_PATH}",
+                        BuildId: "${env.BUILD_ID}",
                         CurrentBuildCommit: "${env.GIT_COMMIT}",
                         PreviousSuccessBuildCommit: "prod_deploy",                      
                         ComponentName: "${env.INSIGHTS_COMPONENT_NAME}", 
