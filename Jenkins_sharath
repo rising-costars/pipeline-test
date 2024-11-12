@@ -69,7 +69,7 @@ pipeline {
 				        Runtime: "Windows",
                         BuildId: "${env.BUILD_ID}",
                         CurrentBuildCommit: "${env.GIT_COMMIT}",
-                        PreviousSuccessBuildCommit: "prod_deploy",                      
+                        PreviousSuccessBuildCommit: "HEAD~2",                      
                         ComponentName: "${env.INSIGHTS_COMPONENT_NAME}", 
                         BuildStartTime: "${currentBuild.timeInMillis}", 
                         ApiKey: "${env.INSIGHTS_API_KEY}",
