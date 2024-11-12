@@ -1,0 +1,91 @@
+pipeline {
+    agent any
+
+    tools {
+        // Install the Maven version configured as "M3" and add it to the path.
+        maven "M3" 
+        // add something in here
+        // TO DO - add more here again
+        // another comment for another demo
+    }
+
+    environment {
+        INSIGHTS_API_KEY = credentials('INSIGHTS_API_KEY')
+        INSIGHTS_API_URL = credentials('INSIGHTS_API_URL')    
+        INSIGHTS_WORKSPACE_OBJECT_ID = "699998056987"
+        INSIGHTS_COMPONENT_NAME = "connectall"
+        BUILD_PATH = currentBuild.BUILD_NUMBER
+    }
+
+    
+    stages {
+        
+        stage('Checkout') {
+            steps {
+                echo 'Checkout stage'
+            }
+        }
+        
+        stage('Clean') {
+            steps {
+                echo 'Hello World'
+                // sh "mvn clean:clean -f bank/pom.xml"
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
+                    script {
+                        try {
+                            // sh "mvn -Dmaven.test.failure.ignore=true clean package -f digitalbank-gen-one/bank/pom.xml"
+                            sh 'exit 0'
+                        } catch (e) {
+                            echo 'Something went wrong during build stage.'
+                            throw e
+                        }
+                    }
+                }
+            }
+        }
+        
+        stage('Test') {
+            steps {
+                echo 'Test'
+               // sh "mvn test -f digitalbank-gen-one/bank/pom.xml"
+            }
+        }
+        
+        stage('Package') {
+            steps {
+                echo 'Package'
+            }
+        }
+        
+        stage('Publish') {
+            steps {
+                echo 'Publish'
+            }
+        }
+
+        stage('Post to ValueOpsInsights') {
+            steps {
+                script { 
+                    
+                    postDeployAndCommitsToInsights(
+				        Runtime: "Windows",
+                        BuildId: "${BUILD_PATH}",
+                        CurrentBuildCommit: "${env.GIT_COMMIT}",
+                        PreviousSuccessBuildCommit: "prod_deploy",                      
+                        ComponentName: "${env.INSIGHTS_COMPONENT_NAME}", 
+                        BuildStartTime: "${currentBuild.timeInMillis}", 
+                        ApiKey: "${env.INSIGHTS_API_KEY}",
+                        ApiUrl: "${env.INSIGHTS_API_URL}",
+                        WorkspaceOid: "${env.INSIGHTS_WORKSPACE_OBJECT_ID}",
+                        GitRepoLoc: "./" 
+                    )
+                }
+            }    
+        }
+    }
+}
