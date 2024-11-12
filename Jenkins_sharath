@@ -1,3 +1,4 @@
+@Library('connectall_library') _
 pipeline {
     agent any
 
