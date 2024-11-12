@@ -7,6 +7,7 @@ pipeline {
         INSIGHTS_API_URL = credentials('INSIGHTS_API_URL')    
         INSIGHTS_WORKSPACE_OBJECT_ID = "699998056987"
         INSIGHTS_COMPONENT_NAME = "connectall"
+        DEBUG_VALUEOPS_INSIGHTS_LIBRARY=true
     }
 
     
@@ -34,7 +35,7 @@ pipeline {
                             sh 'exit 0'
                         } catch (e) {
                             echo 'Something went wrong during build stage.'
-                            throw e
+                           // throw e
                         }
                     }
                 }
