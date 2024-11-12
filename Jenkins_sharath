@@ -58,7 +58,7 @@ pipeline {
         stage('Publish') {
             steps {
                 echo 'Publish'
-                sh 'env'
+                bat 'set'
             }
         }
 
